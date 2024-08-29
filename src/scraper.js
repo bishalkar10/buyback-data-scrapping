@@ -35,7 +35,6 @@ async function scrapeBuybackDetailsPage(htmlText) {
     "Issue Period",
     "Security Name",
     "Issue Size (Shares)",
-    "15% of Issue size",
     "Issue Size (Amount)",
     "Buyback Price",
     "Number of Shareholders",
@@ -63,6 +62,9 @@ async function scrapeBuybackDetailsPage(htmlText) {
       data[key] = value;
     }
   });
+
+  // 15% of Issued buyback shares will be accepted from retail investers
+  data["15% of Issue size"] = data["Issue Size (Shares)"] * (15 / 100);
   return data;
 }
 
