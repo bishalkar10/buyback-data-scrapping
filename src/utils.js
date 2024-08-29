@@ -1,3 +1,5 @@
+// this function is used to remove the dot (.) at the end of the company names.
+// e.g. if we make an api call with "Ex company Ltd." then it will throw error. We need to remove the dot at the end
 function removeDot(text) {
   if (text.length === 0) return "";
 
@@ -13,7 +15,7 @@ function filterLinks(item) {
     return true;
   }
 
-  return new Date(item.recordDate) >= new Date(); // Compare the recordDate with the current date
+  return new Date(item.recordDate) >= new Date(); // Only keept the items which have present or future dates
 }
 
 async function fetchData(url) {
@@ -21,6 +23,7 @@ async function fetchData(url) {
   return response.json();
 }
 
+// converts the response to HTML text for scrapping
 async function fetchHTML(url) {
   const response = await fetch(url);
   return response.text();
